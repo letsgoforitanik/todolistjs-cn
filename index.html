@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TodoList</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            
+            <div id="add-todo">
+                <img src="assets/clipboard.png" alt="icon">
+                <input type="text" placeholder="Type your todo list">
+                <button type="button">Add Todo</button>
+            </div>
+
+            <div id="todo-fn">  
+                <button type="button" id="complete-all">
+                    <img src="assets/seen.png" alt="...">
+                    <span>Complete all tasks</span>
+                </button>
+
+                <button type="button" id="clear-completed">
+                    <span>Clear completed</span>
+                </button>
+            </div>
+
+            <hr>
+
+            <ul id="todo-list">
+                <li>
+                    <label class="form-control">
+                        <input type="checkbox" name="checkbox" />
+                        Learn how to use Vue.js
+                    </label>
+                    <img src="assets/close.png" alt="close-btn" class="delete-todo">
+                </li>
+                <li>
+                    <label class="form-control">
+                        <input type="checkbox" name="checkbox" />
+                        Learn how to use Vue.js
+                    </label>
+                    <img src="assets/close.png" alt="close-btn" class="delete-todo">
+                </li>
+            </ul>
+
+            <hr>
+
+            <div class="todo-fn-bottom">
+                <div id="tasks-left">3 tasks left</div>
+                <div id="btns">
+                    <button type="button">All</button>
+                    <button type="button">Uncomplete</button>
+                    <button type="button">Completed</button>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
