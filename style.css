@@ -170,6 +170,7 @@ input[type="checkbox"] {
     display: grid;
     place-content: center;
     margin-top: 2px;
+    cursor: pointer;
 }
 
 input[type="checkbox"]::before {
