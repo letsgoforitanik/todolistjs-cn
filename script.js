@@ -1,6 +1,11 @@
+// array of todos
 let todos = [];
+
+// filter option -> 0 for all, 1 for uncomplete and 2 for complete
 let showFilter = 0;
 
+
+// dom elements reference
 const divAddTodo = document.querySelector('#add-todo');
 const btnAddTodo = divAddTodo.querySelector('button');
 const txtAddTodo = divAddTodo.querySelector('input[type=text]');
@@ -13,33 +18,50 @@ const btnShowUncomplete = document.querySelector('#show-uncomplete');
 const btnShowCompleted = document.querySelector('#show-completed');
 const divTasksLeft = document.querySelector('#tasks-left');
 
+// event handlers =============================
 
+// all todos are shown, when clicked
 btnShowAll.onclick = function () {
     showFilter = 0;
     render();
 };
 
+// only uncomplete todos are shown, when clicked
 btnShowUncomplete.onclick = function () {
     showFilter = 1;
     render();
 };
 
+// only completed todos are shown, when clicked
 btnShowCompleted.onclick = function () {
     showFilter = 2;
     render();
 };
 
+// completed todos are deleted, when clicked
 btnClearCompleted.onclick = function () {
     todos = todos.filter(td => td.completed === false);
     render();
 };
 
+// all todos are marked as completed, when clicked
 btnCompleteAll.onclick = function () {
     todos.forEach(td => td.completed = true);
     render();
 };
 
-btnAddTodo.onclick = function () {
+// adds a new todo, when clicked
+btnAddTodo.onclick = () => addTodo();
+
+
+// adds a new todo, when 'enter' key is pressed
+txtAddTodo.onkeypress = function (event) {
+    if (event.keyCode !== 13) return;
+    addTodo();
+};
+
+// function to add a new todo in the todos array
+function addTodo() {
 
     const todoName = txtAddTodo.value;
 
@@ -55,19 +77,20 @@ btnAddTodo.onclick = function () {
     todos.unshift(newTodo);
 
     render();
+}
 
-};
 
-
+// the sole purpose of this function is to render the UI, whenever
+// state changes, influenced by React
 function render() {
 
     [btnShowAll, btnShowUncomplete, btnShowCompleted].forEach(btn => btn.classList.remove('txt-black'));
 
     btns.children[showFilter].classList.add('txt-black');
 
-    const noOfLeftTodos = todos.filter(td => td.completed === false).reduce((total) => ++total, 0);
+    const noOfTodos = todos.reduce((total) => ++total, 0);
 
-    divTasksLeft.innerText = `${noOfLeftTodos === 0 ? 'No' : noOfLeftTodos} tasks left`;
+    divTasksLeft.innerText = `${noOfTodos === 0 ? 'No' : noOfTodos} tasks left`;
 
     ulTodoList.innerHTML = '';
 
@@ -78,17 +101,18 @@ function render() {
         ulTodoList.appendChild(li);
     }
 
-    synchronize();
+    synchronizeToStorage();
 
 }
 
-
-function synchronize() {
+// Whenever UI rendering happens, 
+// application state is stored in localStorage
+function synchronizeToStorage() {
     localStorage.clear();
     localStorage.setItem('data', JSON.stringify(todos));
 }
 
-
+// UI element that corresponds to each todo
 function getTodoLiElement(todo) {
 
     const li = document.createElement('li');
@@ -118,7 +142,8 @@ function getTodoLiElement(todo) {
 
 }
 
-
+// When page loads, todos are fetched from localStorage
+// and initial UI rendering occurs.
 function loadData() {
     const data = localStorage.getItem('data');
     todos = data ? JSON.parse(data) : [];

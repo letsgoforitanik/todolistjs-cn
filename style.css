@@ -200,6 +200,11 @@ input[type="checkbox"]:disabled {
 
 img.delete-todo {
     cursor: pointer;
+    display: none;
+}
+
+ul#todo-list>li:hover>img {
+    display: block;
 }
 
 div.todo-fn-bottom {
