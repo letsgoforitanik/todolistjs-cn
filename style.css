@@ -21,7 +21,6 @@ body {
 div.container {
     margin-top: 20px;
     background-color: white;
-    height: 400px;
     width: 100%;
     max-width: 700px;
     border-radius: 5px;
@@ -60,6 +59,7 @@ div#add-todo>button {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     font-size: 18px;
+    cursor: pointer;
 }
 
 div#add-todo>img {
@@ -88,6 +88,7 @@ button#clear-completed {
     border: none;
     border: 1px solid white;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 button#complete-all:hover,
@@ -110,6 +111,7 @@ ul#todo-list {
     padding: 0;
     margin-top: 10px;
     flex-grow: 1;
+    min-height: 200px;
 }
 
 ul#todo-list>li {
@@ -211,6 +213,7 @@ div#btns>button {
     border: none;
     border: 1px solid white;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 div#tasks-left {
@@ -219,4 +222,15 @@ div#tasks-left {
     display: flex;
     align-items: center;
     padding-left: 8px;
+}
+
+#error-msg {
+    color: rgb(206, 1, 1);
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+}
+
+.txt-black {
+    color: black !important;
 }
